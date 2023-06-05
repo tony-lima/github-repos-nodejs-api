@@ -11,6 +11,7 @@ app.get('/', async (req, res) => {
         headers: {
           Accept: 'application/vnd.github+json',
           Authorization: `token ${process.env.GITHUB_TOKEN}`,
+          AccessControlAllowOrigin: '*',
         },
       }
     );
@@ -32,6 +33,7 @@ app.get(`/:path`, async (req, res) => {
         headers: {
           Accept: 'application/vnd.github+json',
           Authorization: `token ${process.env.GITHUB_TOKEN}`,
+          AccessControlAllowOrigin: '*',
         },
       }
     );
