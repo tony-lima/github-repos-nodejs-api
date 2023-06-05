@@ -6,7 +6,13 @@ const PORT = process.env.PORT || 8081;
 app.get('/', async (req, res) => {
   try {
     const result = await axios.get(
-      `https://api.github.com/repos/tony-lima/mock-server/contents/db.json`
+      `https://api.github.com/repos/tony-lima/mock-server/contents/db.json`,
+      {
+        headers: {
+          Accept: 'application/vnd.github+json',
+          Authorization: `token ${process.env.GITHUB_TOKEN}`,
+        },
+      }
     );
     const db = JSON.parse(
       Buffer.from(result.data.content, 'base64').toString()
@@ -21,7 +27,13 @@ app.get('/', async (req, res) => {
 app.get(`/:path`, async (req, res) => {
   try {
     const result = await axios.get(
-      `https://api.github.com/repos/tony-lima/mock-server/contents/db.json`
+      `https://api.github.com/repos/tony-lima/mock-server/contents/db.json`,
+      {
+        headers: {
+          Accept: 'application/vnd.github+json',
+          Authorization: `token ${process.env.GITHUB_TOKEN}`,
+        },
+      }
     );
     const db = JSON.parse(
       Buffer.from(result.data.content, 'base64').toString()
