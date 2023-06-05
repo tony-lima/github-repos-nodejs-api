@@ -14,7 +14,7 @@ app.get('/', async (req, res) => {
 
     res.send(db);
   } catch (error) {
-    res.status(400).send('Error while getting list of repositories');
+    res.status(400).send(`Error while getting list of repositories. ${error}}`);
   }
 });
 
@@ -29,7 +29,7 @@ app.get(`/:path`, async (req, res) => {
 
     res.send(db[req.params.path]);
   } catch (error) {
-    res.status(400).send('Error while getting list of repositories');
+    res.status(400).send(`Error while getting ${req.params.path}. ${error}}`);
   }
 });
 
