@@ -1,7 +1,11 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
+const cors = require('cors');
 const PORT = process.env.PORT || 8081;
+app.use(cors({
+  origin: '*'
+}));
 
 app.get('/', async (req, res) => {
   try {
@@ -11,7 +15,7 @@ app.get('/', async (req, res) => {
         headers: {
           Accept: 'application/vnd.github+json',
           Authorization: `token ${process.env.GITHUB_TOKEN}`,
-          AccessControlAllowOrigin: '*',
+          "Access-Control-Allow-Origin": "*"
         },
       }
     );
@@ -33,7 +37,7 @@ app.get(`/:path`, async (req, res) => {
         headers: {
           Accept: 'application/vnd.github+json',
           Authorization: `token ${process.env.GITHUB_TOKEN}`,
-          AccessControlAllowOrigin: '*',
+          "Access-Control-Allow-Origin": "*"
         },
       }
     );
