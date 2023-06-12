@@ -45,7 +45,7 @@ app.get(`/:path`, async (req, res) => {
       Buffer.from(result.data.content, 'base64').toString()
     );
     const start = parseInt(req.query.start) || 0;
-    const limit = parseInt(req.query.limit) || db[req.params.path].length;
+    const limit = parseInt(req.query.limit) || db[req.params.path].apps[0].review.length;
     console.log("path is: ", req.params.path);
     if (req.params.path === 'reviews') {
       const data = db[req.params.path].apps[0].review.slice(start, start + limit) || [];
