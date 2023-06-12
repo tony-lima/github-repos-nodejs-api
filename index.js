@@ -44,8 +44,12 @@ app.get(`/:path`, async (req, res) => {
     const db = JSON.parse(
       Buffer.from(result.data.content, 'base64').toString()
     );
+    const start = parseInt(req.query._start) || 0;
+    const limit = parseInt(req.query._limit) || db[req.params.path].length;
+    const data = db[req.params.path].slice(start, start + limit) || [];
 
-    res.send(db[req.params.path]);
+
+    res.send(data);
   } catch (error) {
     res.status(400).send(`Error while getting ${req.params.path}. ${error}}`);
   }
