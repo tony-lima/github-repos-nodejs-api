@@ -49,10 +49,19 @@ app.get(`/:path`, async (req, res) => {
     console.log("path is: ", req.params.path);
     if (req.params.path === 'reviews') {
       const data = db[req.params.path].app[0].review.slice(start, start + limit) || [];
-      return res.send(data);
+      console.log("data if is: ", data);
+      const formatted = {
+        "app": [
+          {
+            "name": "com.claro.residencial",
+            "review": data
+          },
+        ],
+      }
+      return res.send(formatted);
     }
     const data = db[req.params.path];
-
+    console.log("data: ", data);
     res.send(data);
   } catch (error) {
     res.status(400).send(`Error while getting ${req.params.path}. ${error}}`);
