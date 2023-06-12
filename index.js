@@ -48,10 +48,10 @@ app.get(`/:path`, async (req, res) => {
     const limit = parseInt(req.query.limit) || db[req.params.path].length;
     console.log("path is: ", req.params.path);
     if (req.params.path === 'reviews') {
-      const data = db[req.params.path].app[0].review.slice(start, start + limit) || [];
+      const data = db[req.params.path].apps[0].review.slice(start, start + limit) || [];
       console.log("data if is: ", data);
       const formatted = {
-        "app": [
+        "apps": [
           {
             "name": "com.claro.residencial",
             "review": data
