@@ -46,8 +46,11 @@ app.get(`/:path`, async (req, res) => {
     );
     const start = parseInt(req.query._start) || 0;
     const limit = parseInt(req.query._limit) || db[req.params.path].length;
-    const data = db[req.params.path].slice(start, start + limit) || [];
-
+    if (req.query.path === 'reviews') {
+      const data = db[req.params.path].app[0].review.slice(start, start + limit) || [];
+      return res.send(data);
+    }
+    const data = db[req.params.path];
 
     res.send(data);
   } catch (error) {
